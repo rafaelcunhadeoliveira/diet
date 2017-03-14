@@ -27,6 +27,12 @@
 		532918B61E71B4C800499B62 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532918B51E71B4C800499B62 /* Measure.swift */; };
 		532918B81E71B4F300499B62 /* NewMeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532918B71E71B4F300499B62 /* NewMeasureViewController.swift */; };
 		532918BB1E71B7BC00499B62 /* ChestMeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532918BA1E71B7BC00499B62 /* ChestMeasureViewController.swift */; };
+		9EA4C9D01E781CF30016C801 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4C9CF1E781CF30016C801 /* MenuTableViewController.swift */; };
+		9EA4C9D21E781D140016C801 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4C9D11E781D140016C801 /* MenuTableViewCell.swift */; };
+		9EA4C9D71E7829540016C801 /* MealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4C9D61E7829540016C801 /* MealTableViewController.swift */; };
+		9EA4C9D91E7829B60016C801 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4C9D81E7829B60016C801 /* MealTableViewCell.swift */; };
+		9EA4CA1A1E7840E40016C801 /* NewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4CA191E7840E40016C801 /* NewMenuViewController.swift */; };
+		9EA4CA1C1E7843470016C801 /* NewMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4CA1B1E7843470016C801 /* NewMealViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +79,12 @@
 		532918B51E71B4C800499B62 /* Measure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		532918B71E71B4F300499B62 /* NewMeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMeasureViewController.swift; sourceTree = "<group>"; };
 		532918BA1E71B7BC00499B62 /* ChestMeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChestMeasureViewController.swift; sourceTree = "<group>"; };
+		9EA4C9CF1E781CF30016C801 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		9EA4C9D11E781D140016C801 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		9EA4C9D61E7829540016C801 /* MealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewController.swift; sourceTree = "<group>"; };
+		9EA4C9D81E7829B60016C801 /* MealTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
+		9EA4CA191E7840E40016C801 /* NewMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMenuViewController.swift; sourceTree = "<group>"; };
+		9EA4CA1B1E7843470016C801 /* NewMealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMealViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +146,10 @@
 		531D8E501E73508800D5BD8A /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9EA4C9D31E7821880016C801 /* meals */,
+				9EA4C9CF1E781CF30016C801 /* MenuTableViewController.swift */,
+				9EA4C9D11E781D140016C801 /* MenuTableViewCell.swift */,
+				9EA4CA191E7840E40016C801 /* NewMenuViewController.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -210,6 +226,16 @@
 				531D8E471E73218900D5BD8A /* NewMeasure */,
 			);
 			name = Measures;
+			sourceTree = "<group>";
+		};
+		9EA4C9D31E7821880016C801 /* meals */ = {
+			isa = PBXGroup;
+			children = (
+				9EA4C9D61E7829540016C801 /* MealTableViewController.swift */,
+				9EA4C9D81E7829B60016C801 /* MealTableViewCell.swift */,
+				9EA4CA1B1E7843470016C801 /* NewMealViewController.swift */,
+			);
+			name = meals;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,7 +378,11 @@
 				532918B81E71B4F300499B62 /* NewMeasureViewController.swift in Sources */,
 				531D8E421E73108500D5BD8A /* HipsViewController.swift in Sources */,
 				531D8E541E76D58500D5BD8A /* Menu.swift in Sources */,
+				9EA4C9D91E7829B60016C801 /* MealTableViewCell.swift in Sources */,
 				531D8E4F1E73493600D5BD8A /* IndividualMeasureViewController.swift in Sources */,
+				9EA4C9D01E781CF30016C801 /* MenuTableViewController.swift in Sources */,
+				9EA4CA1C1E7843470016C801 /* NewMealViewController.swift in Sources */,
+				9EA4C9D21E781D140016C801 /* MenuTableViewCell.swift in Sources */,
 				5329188C1E71B38A00499B62 /* MyDiet.xcdatamodeld in Sources */,
 				532918B61E71B4C800499B62 /* Measure.swift in Sources */,
 				532918841E71B38A00499B62 /* AppDelegate.swift in Sources */,
@@ -361,6 +391,8 @@
 				531D8E441E7312E100D5BD8A /* ArmsViewController.swift in Sources */,
 				531D8E561E76D5AB00D5BD8A /* Meal.swift in Sources */,
 				532918BB1E71B7BC00499B62 /* ChestMeasureViewController.swift in Sources */,
+				9EA4C9D71E7829540016C801 /* MealTableViewController.swift in Sources */,
+				9EA4CA1A1E7840E40016C801 /* NewMenuViewController.swift in Sources */,
 				531D8E4C1E7344E200D5BD8A /* AllMeasuresTableViewCell.swift in Sources */,
 				531D8E521E76C7C100D5BD8A /* WeightViewController.swift in Sources */,
 				531D8E401E730CFC00D5BD8A /* WaistViewController.swift in Sources */,

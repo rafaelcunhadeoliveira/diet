@@ -12,52 +12,24 @@ class Menu: NSObject{
     var year: Int
     var month: Int
     var day: Int
-    var meals: Array
+    var meals: Array<Meal>
+    var totalCalories: Float
 
     
     init(year: Int, month: Int, day: Int) {
         self.year = year
         self.month = month
         self.day = day
-        self.chest = 0
-        self.waist = 0
-        self.hips = 0
-        self.leftArm = 0
-        self.rightArm = 0
-        self.leftThigh = 0
-        self.rightThigh = 0
-        self.weight = 0
+        self.meals = []
+        self.totalCalories = 0
+
     }
     
-    func setChest(newchest: Float){
-        self.chest = newchest
+    func addMeal(newMeal: Meal){
+        self.meals.append(newMeal)
     }
-    
-    func setWaist(newwaist: Float){
-        self.waist = newwaist
+    func setTotalCalories(total: Float){
+        self.totalCalories = total
     }
-    
-    func setHips(newHips: Float){
-        self.hips = newHips
-    }
-    
-    func setWeight(newWeight: Float){
-        self.weight = newWeight
-    }
-    
-    func setArms(newLeftArm: Float, newRightArm: Float){
-        self.leftArm = newLeftArm
-        self.rightArm = newRightArm
-    }
-    func setTighs(newLeftThigh: Float, newRightThigh: Float){
-        self.leftThigh = newLeftThigh
-        self.rightThigh = newRightThigh
-    }
-    
-    
-    
-    
-    
-    
     
 }
