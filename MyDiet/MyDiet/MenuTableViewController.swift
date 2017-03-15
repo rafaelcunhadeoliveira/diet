@@ -9,6 +9,10 @@
 import UIKit
 
 class MenuTableViewController: UITableViewController {
+    
+    var Menus: Array<Menu> = []
+    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, id: "")
+    var isNew: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +25,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     func insert(){
+        self.isNew = true
         performSegue(withIdentifier: "newMenu", sender: self)
     }
 
@@ -33,23 +38,38 @@ class MenuTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return Menus.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell:MenuTableViewCell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! MenuTableViewCell
 
-        // Configure the cell...
-
+        cell.monthLabel.text = String(Menus[indexPath.row].month)
+        cell.yearLabel.text = String(Menus[indexPath.row].year)
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.actualMenu = Menus[indexPath.row]
+        self.performSegue(withIdentifier: "individualMenu", sender: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? MealTableViewController{
+            destination.actualMenu = self.actualMenu
+            destination.isNew = self.isNew
+        }
+        if let destination = segue.destination as? NewMenuViewController{
+            destination.actualMenu = self.actualMenu
+            destination.isNew = self.isNew
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

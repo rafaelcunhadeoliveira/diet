@@ -13,10 +13,12 @@ class NewMenuViewController: UIViewController {
     var year: Int = 0
     var month: Int = 0
     var day: Int = 0
+    var id: String = ""
+    var isNew = true
     
     @IBOutlet weak var timePicker: UIDatePicker!
     
-    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0)
+    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, id: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,13 +48,15 @@ class NewMenuViewController: UIViewController {
         day = calendar.component(.day, from: date)
     }
     @IBAction func nextButton(_ sender: Any) {
-        actualMenu = Menu(year: self.year, month: self.month, day: self.day)
+        let menuID = String(self.year) + String(self.month) + String(self.day)
+        actualMenu = Menu(year: self.year, month: self.month, day: self.day, id: menuID)
         self.performSegue(withIdentifier: "mealsInMenu", sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? MealTableViewController{
             destination.actualMenu = self.actualMenu
+            destination.isNew = self.isNew
         }
     }
     

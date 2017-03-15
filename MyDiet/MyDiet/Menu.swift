@@ -14,15 +14,16 @@ class Menu: NSObject{
     var day: Int
     var meals: Array<Meal>
     var totalCalories: Float
+    var id: String
 
     
-    init(year: Int, month: Int, day: Int) {
+    init(year: Int, month: Int, day: Int, id:String) {
         self.year = year
         self.month = month
         self.day = day
+        self.id = id
         self.meals = []
         self.totalCalories = 0
-
     }
     
     func addMeal(newMeal: Meal){

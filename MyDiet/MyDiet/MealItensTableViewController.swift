@@ -1,34 +1,38 @@
 //
-//  MealTableViewController.swift
+//  MealItensTableViewController.swift
 //  MyDiet
 //
-//  Created by Rafael Cunha on 14/03/17.
+//  Created by Rafael Cunha on 15/03/17.
 //  Copyright © 2017 Rafael Cunha de Oliveira. All rights reserved.
 //
 
 import UIKit
 
-class MealTableViewController: UITableViewController {
+class MealItensTableViewController: UITableViewController {
 
-    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, id: "")
-    
-    var isNew: Bool = false
+    var items: Array<(String, String, String)> = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(MealItensTableViewController.insert))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(MealItensTableViewController.insert))
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(MenuTableViewController.insert))
-        if(isNew){
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(MenuTableViewController.insert))
-        }
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     func insert(){
-        performSegue(withIdentifier: "newMeal", sender: self)
+        performSegue(withIdentifier: "newItem", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? NewItemViewController{
+            destination.items = self.items
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -44,18 +48,21 @@ class MealTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return items.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell: MealItensTableViewCell = tableView.dequeueReusableCell(withIdentifier: "itens", for: indexPath) as! MealItensTableViewCell
+        
+        cell.itemField.text = items[indexPath.row].0
+        cell.quantityFIeld.text = items[indexPath.row].1
+        cell.unityFIeld.text = items[indexPath.row].2
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

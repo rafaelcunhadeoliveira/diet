@@ -8,14 +8,17 @@
 
 import UIKit
 
-class NewMealViewController: UIViewController {
+class NewMealViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     var hour: Int = 0
     var minutes: Int = 0
+    var types: Array<String> = ["Breakfast", "Brunch", "Lunch", "Dinner", "Snack", "Supper"]
+    var type: String = "Breakfast"
     
     @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var typePicker: UIPickerView!
     
-    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0)
+    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, id: "")
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,28 @@ class NewMealViewController: UIViewController {
         
         hour =  components.hour!
         minutes = components.minute!
+        
+        typePicker.dataSource = self
+        typePicker.delegate = self
         // Do any additional setup after loading the view.
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return types.count;
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return types[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        type = types[row]
     }
     
     override func didReceiveMemoryWarning() {
