@@ -10,8 +10,8 @@ import UIKit
 
 class MenuTableViewController: UITableViewController {
     
-    var Menus: Array<Menu> = []
-    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, id: "")
+    var allMenus: Array<Menu> = []
+    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, calories: 0, id: "")
     var isNew: Bool = false
 
     override func viewDidLoad() {
@@ -43,20 +43,20 @@ class MenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Menus.count
+        return allMenus.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:MenuTableViewCell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! MenuTableViewCell
+        let cell:MenuTableViewCell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuTableViewCell
 
-        cell.monthLabel.text = String(Menus[indexPath.row].month)
-        cell.yearLabel.text = String(Menus[indexPath.row].year)
+        cell.monthLabel.text = String(allMenus[indexPath.row].month)
+        cell.yearLabel.text = String(allMenus[indexPath.row].year)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.actualMenu = Menus[indexPath.row]
+        self.actualMenu = allMenus[indexPath.row]
         self.performSegue(withIdentifier: "individualMenu", sender: indexPath.row)
     }
     

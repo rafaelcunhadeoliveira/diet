@@ -300,7 +300,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="BKx-Fg-jIL" customClass="MenuTableViewCell" customModule="MyDiet" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" rowHeight="75" id="BKx-Fg-jIL" customClass="MenuTableViewCell" customModule="MyDiet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BKx-Fg-jIL" id="w0t-5B-asd">
@@ -355,13 +355,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6aV-eN-uHq">
-                                <rect key="frame" x="16" y="225" width="359" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <date key="date" timeIntervalSinceReferenceDate="511189571.88262498">
-                                    <!--2017-03-14 13:06:11 +0000-->
-                                </date>
-                            </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-do-XPt">
                                 <rect key="frame" x="171" y="617" width="32" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -370,18 +363,40 @@
                                     <action selector="nextButton:" destination="arw-zY-kfe" eventType="touchUpInside" id="y0u-pa-nH9"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Calories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRG-Ts-frN">
+                                <rect key="frame" x="81" y="379" width="208" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IIc-ro-PGd">
+                                <rect key="frame" x="139" y="453" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6aV-eN-uHq">
+                                <rect key="frame" x="8" y="135" width="359" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="511189571.88262498">
+                                    <!--2017-03-14 13:06:11 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="UvJ-7E-6XJ"/>
                     <connections>
+                        <outlet property="caloriesField" destination="IIc-ro-PGd" id="M5F-pV-ns5"/>
                         <outlet property="timePicker" destination="6aV-eN-uHq" id="dqd-SO-Wzv"/>
                         <segue destination="H4Z-iU-0zx" kind="show" identifier="mealsInMenu" id="vsC-hK-OuT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9SV-hP-Vkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="534" y="1736"/>
+            <point key="canvasLocation" x="533.60000000000002" y="1735.6821589205399"/>
         </scene>
         <!--Meal Table View Controller-->
         <scene sceneID="1mB-ci-iVM">
@@ -392,7 +407,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="217" id="1LJ-sz-ihH" customClass="MealTableViewCell" customModule="MyDiet" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mealCell" rowHeight="217" id="1LJ-sz-ihH" customClass="MealTableViewCell" customModule="MyDiet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="217"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1LJ-sz-ihH" id="KHf-8F-cfY">
@@ -419,6 +434,11 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mealView" destination="80o-UV-eDk" id="HvH-dQ-06O"/>
+                                    <outlet property="timeField" destination="5vT-pG-yha" id="80w-d7-VzL"/>
+                                    <outlet property="typeField" destination="HBL-2t-vx9" id="67i-7Q-Ybb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -479,7 +499,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxu-cB-ER1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3117.5999999999999" y="1181.5592203898052"/>
+            <point key="canvasLocation" x="2993" y="1751"/>
         </scene>
         <!--Meal Itens Table View Controller-->
         <scene sceneID="20f-rJ-5bT">
@@ -494,7 +514,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dNL-s7-eXj" id="b3x-pk-Tcd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSZ-fa-cnP">
@@ -994,8 +1014,8 @@ unit of measurement </string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tnr-xh-5Me"/>
-        <segue reference="DSa-Ie-leA"/>
         <segue reference="ObL-Cd-6g7"/>
+        <segue reference="vsC-hK-OuT"/>
+        <segue reference="tnr-xh-5Me"/>
     </inferredMetricsTieBreakers>
 </document>

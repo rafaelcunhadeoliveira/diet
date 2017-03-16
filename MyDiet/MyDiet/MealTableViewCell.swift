@@ -10,6 +10,10 @@ import UIKit
 
 class MealTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var mealView: UIImageView!
+    @IBOutlet weak var timeField: UILabel!
+    @IBOutlet weak var typeField: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

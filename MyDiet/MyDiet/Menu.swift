@@ -17,20 +17,17 @@ class Menu: NSObject{
     var id: String
 
     
-    init(year: Int, month: Int, day: Int, id:String) {
+    init(year: Int, month: Int, day: Int, calories: Float, id:String) {
         self.year = year
         self.month = month
         self.day = day
         self.id = id
         self.meals = []
-        self.totalCalories = 0
+        self.totalCalories = calories
     }
     
     func addMeal(newMeal: Meal){
         self.meals.append(newMeal)
-    }
-    func setTotalCalories(total: Float){
-        self.totalCalories = total
     }
     
 }

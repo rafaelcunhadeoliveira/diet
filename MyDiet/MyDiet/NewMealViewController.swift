@@ -18,7 +18,7 @@ class NewMealViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var typePicker: UIPickerView!
     
-    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, id: "")
+    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, calories: 0, id: "")
         
     override func viewDidLoad() {
         super.viewDidLoad()

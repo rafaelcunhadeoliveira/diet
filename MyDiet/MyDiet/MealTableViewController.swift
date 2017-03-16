@@ -10,7 +10,9 @@ import UIKit
 
 class MealTableViewController: UITableViewController {
 
-    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, id: "")
+    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, calories: 0, id: "")
+    var actualMeal: Meal = Meal(hour: 0, minute: 0, id: "")
+    var allMeals: Array<Meal> = []
     
     var isNew: Bool = false
     
@@ -21,9 +23,9 @@ class MealTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(MenuTableViewController.insert))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(MealTableViewController.insert))
         if(isNew){
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(MenuTableViewController.insert))
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(MealTableViewController.insert))
         }
     }
     
@@ -44,18 +46,22 @@ class MealTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return allMeals.count;
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell: MealTableViewCell = tableView.dequeueReusableCell(withIdentifier: "mealCell", for: indexPath) as! MealTableViewCell
 
-        // Configure the cell...
+        let displayTime = String(self.allMeals[indexPath.row].hour) + ":" + String(self.allMeals[indexPath.row].minute)
 
+        cell.timeField.text = displayTime
+        cell.typeField.text = self.allMeals[indexPath.row].type
+        
+        
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

@@ -29,7 +29,7 @@
         <attribute name="weight" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
-    <entity name="Menu" representedClassName="Menu" syncable="YES" codeGenerationType="class">
+    <entity name="Menus" representedClassName="Menus" syncable="YES" codeGenerationType="class">
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -38,9 +38,9 @@
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Measures" positionX="-63" positionY="-18" width="128" height="225"/>
-        <element name="Meals" positionX="-63" positionY="72" width="128" height="135"/>
-        <element name="Menu" positionX="-54" positionY="81" width="128" height="135"/>
         <element name="Itens" positionX="-36" positionY="99" width="128" height="120"/>
+        <element name="Meals" positionX="-63" positionY="72" width="128" height="135"/>
+        <element name="Measures" positionX="-63" positionY="-18" width="128" height="225"/>
+        <element name="Menus" positionX="-54" positionY="81" width="128" height="135"/>
     </elements>
 </model>

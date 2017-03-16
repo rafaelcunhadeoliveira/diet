@@ -15,10 +15,12 @@ class NewMenuViewController: UIViewController {
     var day: Int = 0
     var id: String = ""
     var isNew = true
+    var calories: Float = 0
     
     @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var caloriesField: UITextField!
     
-    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, id: "")
+    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, calories: 0, id: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +51,7 @@ class NewMenuViewController: UIViewController {
     }
     @IBAction func nextButton(_ sender: Any) {
         let menuID = String(self.year) + String(self.month) + String(self.day)
-        actualMenu = Menu(year: self.year, month: self.month, day: self.day, id: menuID)
+        actualMenu = Menu(year: self.year, month: self.month, day: self.day, calories: self.calories, id: menuID)
         self.performSegue(withIdentifier: "mealsInMenu", sender: sender)
     }
     

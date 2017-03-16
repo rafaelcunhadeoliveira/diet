@@ -15,11 +15,13 @@ class Meal: NSObject{
     var image: String
     var item: Array<(String, String, String)>
     var totalCalories: Float
+    var id: String
 
 //    
-    init(hour: Int, minute: Int) {
+    init(hour: Int, minute: Int, id: String) {
         self.hour = hour
         self.minute = minute
+        self.id = id
         self.type = ""
         self.image = ""
         self.item = []
