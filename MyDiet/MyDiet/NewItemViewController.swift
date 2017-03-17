@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
 class NewItemViewController: UIViewController {
 
-    var items: Array<(String, String, String)> = []
+    var itens: Array<String> = []
+    var itemName: String = ""
+    var itemQuantity: String = ""
+    var itemUnity: String = ""
+    var actualMeal: Meal = Meal(hour: 0, minute: 0, id: "")
+    var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, calories: 0, id: "")
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var quantityField: UITextField!
@@ -23,20 +29,87 @@ class NewItemViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func SaveButton(_ sender: Any) {
-        items.append((nameField.text!, quantityField.text!,unityField.text!))
-        performSegue(withIdentifier: "saveItem", sender: self)
-    }
+//    @IBAction func SaveButton(_ sender: Any) {
+//        items.append((nameField.text!, quantityField.text!,unityField.text!))
+//        performSegue(withIdentifier: "saveItem", sender: self)
+//    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? MealItensTableViewController{
-            destination.items = self.items
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let destination = segue.destination as? MealItensTableViewController{
+//            destination.items = self.items
+//        }
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func checkValues() -> Bool{
+        if(nameField.text != ""){
+            itemName = nameField.text!
+            if(unityField.text! != ""){
+                itemUnity = unityField.text!
+                do{
+                    try Int(quantityField.text!)
+                    itemQuantity = quantityField.text!
+                    return true
+                }
+                catch{
+                    //quantity not a number
+                    print("quantity not a number")
+                }
+            }
+            else{
+                //item unity is empty
+                print("item unity is empty")
+            }
+        }
+        else{
+            //item name is empty
+            print("item name is empty")
+        }
+        return false
+        
+    }
+    
+    @IBAction func saveItem(_ sender: Any) {
+        
+        if(checkValues()){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let new_Measure = NSEntityDescription.insertNewObject(forEntityName: "Itens", into: context)
+        
+        new_Measure.setValue("rafael", forKey: "user")
+        new_Measure.setValue(itemName, forKey: "name")
+        new_Measure.setValue(itemQuantity, forKey: "quantity")
+        new_Measure.setValue(itemUnity, forKey: "unity")
+        new_Measure.setValue(actualMeal.id, forKey: "id")
+
+        do{
+            try context.save()
+            print("The user is saved")
+            
+        }
+        catch{
+            //error
+        }
+        
+        performSegue(withIdentifier: "saveItem", sender: self)
+        }
+        else{
+            print("valores errados")
+        }
+    }
+    	
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? MealItensTableViewController{
+            destination.actualMeal = self.actualMeal
+            destination.newItem = true
+            destination.actualMenu = self.actualMenu
+        }
     }
     
 

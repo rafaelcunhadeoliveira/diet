@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 class NewMenuViewController: UIViewController {
-
+    
     var year: Int = 0
     var month: Int = 0
     var day: Int = 0
@@ -52,8 +53,36 @@ class NewMenuViewController: UIViewController {
     @IBAction func nextButton(_ sender: Any) {
         let menuID = String(self.year) + String(self.month) + String(self.day)
         actualMenu = Menu(year: self.year, month: self.month, day: self.day, calories: self.calories, id: menuID)
-        self.performSegue(withIdentifier: "mealsInMenu", sender: sender)
-    }
+        
+
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let new_Measure = NSEntityDescription.insertNewObject(forEntityName: "Menus", into: context)
+            
+            new_Measure.setValue("rafael", forKey: "user")
+            new_Measure.setValue(self.year, forKey: "year")
+            new_Measure.setValue(self.month, forKey: "month")
+            new_Measure.setValue(self.day, forKey: "day")
+            new_Measure.setValue(self.calories, forKey: "totalCalories")
+            new_Measure.setValue(self.actualMenu.id, forKey: "id")
+            
+            do{
+                try context.save()
+                print("The user is saved")
+                
+            }
+            catch{
+                //error
+            }
+            
+            self.performSegue(withIdentifier: "mealsInMenu", sender: sender)
+            
+        }
+        
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? MealTableViewController{
@@ -61,8 +90,8 @@ class NewMenuViewController: UIViewController {
             destination.isNew = self.isNew
         }
     }
-    
-    
+}
+
     /*
      // MARK: - Navigation
      
@@ -72,5 +101,5 @@ class NewMenuViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
 
-}

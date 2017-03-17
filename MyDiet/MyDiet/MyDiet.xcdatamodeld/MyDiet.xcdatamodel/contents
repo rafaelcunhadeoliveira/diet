@@ -11,7 +11,6 @@
         <attribute name="hour" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="minute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="totalCalories" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -39,7 +38,7 @@
     </entity>
     <elements>
         <element name="Itens" positionX="-36" positionY="99" width="128" height="120"/>
-        <element name="Meals" positionX="-63" positionY="72" width="128" height="135"/>
+        <element name="Meals" positionX="-63" positionY="72" width="128" height="30"/>
         <element name="Measures" positionX="-63" positionY="-18" width="128" height="225"/>
         <element name="Menus" positionX="-54" positionY="81" width="128" height="135"/>
     </elements>

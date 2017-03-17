@@ -418,8 +418,8 @@
                                             <rect key="frame" x="24" y="42" width="133" height="115"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vT-pG-yha">
-                                            <rect key="frame" x="257" y="54" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vT-pG-yha">
+                                            <rect key="frame" x="230" y="54" width="95" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -448,11 +448,13 @@
                     </tableView>
                     <connections>
                         <segue destination="COe-K2-fty" kind="show" identifier="newMeal" id="v2g-Gx-oPi"/>
+                        <segue destination="L7H-py-yUI" kind="show" identifier="backToMenus" id="2Gb-HI-mga"/>
+                        <segue destination="GAr-mq-lbD" kind="show" identifier="individualMeal" id="pG1-C1-MZZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWM-Pn-inZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1729" y="1183"/>
+            <point key="canvasLocation" x="1728.8" y="1181.5592203898052"/>
         </scene>
         <!--New Meal View Controller-->
         <scene sceneID="uhS-7P-iBI">
@@ -478,7 +480,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <segue destination="GAr-mq-lbD" kind="show" id="ObL-Cd-6g7"/>
+                                    <action selector="nextButton:" destination="COe-K2-fty" eventType="touchUpInside" id="Dwu-a9-yz7"/>
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39X-xU-gHj">
@@ -495,11 +497,12 @@
                     <connections>
                         <outlet property="timePicker" destination="c52-ZL-9sF" id="TC3-te-U61"/>
                         <outlet property="typePicker" destination="39X-xU-gHj" id="dKJ-3F-27K"/>
+                        <segue destination="GAr-mq-lbD" kind="show" identifier="goToItens" id="HfV-hD-nXx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxu-cB-ER1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2993" y="1751"/>
+            <point key="canvasLocation" x="3113" y="1736"/>
         </scene>
         <!--Meal Itens Table View Controller-->
         <scene sceneID="20f-rJ-5bT">
@@ -562,6 +565,7 @@
                     <navigationItem key="navigationItem" id="G8K-vG-Ldh"/>
                     <connections>
                         <segue destination="R3f-vE-cXZ" kind="show" identifier="newItem" id="OcY-wb-O2Z"/>
+                        <segue destination="H4Z-iU-0zx" kind="show" identifier="isDone" id="349-DB-JLa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qp7-mo-ceH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -632,7 +636,7 @@ unit of measurement </string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
-                                    <action selector="SaveButton:" destination="R3f-vE-cXZ" eventType="touchUpInside" id="7Cj-un-3jT"/>
+                                    <action selector="saveItem:" destination="R3f-vE-cXZ" eventType="touchUpInside" id="R5B-XH-V0c"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1014,8 +1018,9 @@ unit of measurement </string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ObL-Cd-6g7"/>
-        <segue reference="vsC-hK-OuT"/>
+        <segue reference="pG1-C1-MZZ"/>
+        <segue reference="DSa-Ie-leA"/>
+        <segue reference="2Gb-HI-mga"/>
         <segue reference="tnr-xh-5Me"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -206,14 +206,14 @@ class AllMeasuresTableViewController: UITableViewController {
             var count = 0
             do{
                 
-                let requestBook = NSFetchRequest<NSFetchRequestResult>(entityName: "Measures")
-                requestBook.returnsObjectsAsFaults = false
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Measures")
+                request.returnsObjectsAsFaults = false
                 
-                let resultsBooks = try moc.fetch(requestBook)
-                if resultsBooks.count > 0{
-                    for resultBook in resultsBooks as! [NSManagedObject]{
+                let results = try moc.fetch(request)
+                if results.count > 0{
+                    for result in results as! [NSManagedObject]{
                         if(count == indexPath.row){
-                            moc.delete(resultBook)
+                            moc.delete(result)
                         }
                         count += 1
                     }

@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import CoreData
 
 class MenuTableViewController: UITableViewController {
     
     var allMenus: Array<Menu> = []
     var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, calories: 0, id: "")
     var isNew: Bool = false
+    var year: Int = 0
+    var month: Int = 0
+    var day: Int = 0
+    var id: String = ""
+    var calories: Float = 0
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +31,57 @@ class MenuTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(MenuTableViewController.insert))
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        
+        do{
+            
+            let requestItem = NSFetchRequest<NSFetchRequestResult>(entityName: "Menus")
+            requestItem.returnsObjectsAsFaults = false
+            
+            let resultsItem = try context.fetch(requestItem)
+            if resultsItem.count > 0{
+                for resultI in resultsItem as! [NSManagedObject]{
+                    
+                    if let user = resultI.value(forKey: "user"){
+                        let userMenu =  String(describing: user)
+                        
+                        if ("rafael" == userMenu) {
+                            if let menuYear = resultI.value(forKey: "year") {
+                                let temp =  String(describing: menuYear)
+                                year = Int(temp)!
+                            }
+                            if let menuMonth = resultI.value(forKey: "month") {
+                                let temp =  String(describing: menuMonth)
+                                month = Int(temp)!
+                            }
+                            if let menuDay = resultI.value(forKey: "day") {
+                                let temp =  String(describing: menuDay)
+                                day = Int(temp)!
+                            }
+                            if let menuID = resultI.value(forKey: "id"){
+                                id =  String(describing: menuID)
+                            }
+                            if let menuCalories = resultI.value(forKey: "totalCalories") {
+                                let temp =  String(describing: menuCalories)
+                                calories = Float(temp)!
+                            }
+                            
+                            let actualMenu: Menu = Menu(year: year, month: month, day: day, calories: calories, id: id)
+                            allMenus.append(actualMenu)
+                        }
+                    }
+                }
+            }
+            
+        }
+        catch{
+            //error
+        }
+        
     }
     
     func insert(){
@@ -49,8 +109,10 @@ class MenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:MenuTableViewCell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuTableViewCell
+        
+        let monthName = self.convert(month: allMenus[indexPath.row].month)
 
-        cell.monthLabel.text = String(allMenus[indexPath.row].month)
+        cell.monthLabel.text = monthName
         cell.yearLabel.text = String(allMenus[indexPath.row].year)
         return cell
     }
@@ -78,18 +140,80 @@ class MenuTableViewController: UITableViewController {
         return true
     }
     */
-
-    /*
+    func getContext () -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        if editingStyle == .delete
+        {
+            let moc = getContext()
+            var count = 0
+            do{
+                
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Menus")
+                request.returnsObjectsAsFaults = false
+                
+                let results = try moc.fetch(request)
+                if results.count > 0{
+                    for result in results as! [NSManagedObject]{
+                        if(count == indexPath.row){
+                            moc.delete(result)
+                        }
+                        count += 1
+                    }
+                }
+            }
+            catch{}
+            
+            do {
+                try moc.save()
+                print("saved!")
+            } catch let error as NSError  {
+                print("Could not save \(error), \(error.userInfo)")
+            } catch {
+                
+            }
+            
+            self.allMenus.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
     }
-    */
+    
+    func convert(month: Int) -> String{
+        switch month {
+        case 1:
+            return "January"
+        case 2:
+            return "February"
+        case 3:
+            return "March"
+        case 4:
+            return "April"
+        case 5:
+            return "May"
+        case 6:
+            return "June"
+        case 7:
+            return "July"
+        case 8:
+            return "August"
+        case 9:
+            return "September"
+        case 10:
+            return "October"
+        case 11:
+            return "November"
+        case 12:
+            return "December"
+            
+        default:
+            print("erro")
+        }
+        return""
+    }
 
     /*
     // Override to support rearranging the table view.

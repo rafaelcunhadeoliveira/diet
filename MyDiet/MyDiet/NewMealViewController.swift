@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 class NewMealViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
+    
     var hour: Int = 0
     var minutes: Int = 0
     var types: Array<String> = ["Breakfast", "Brunch", "Lunch", "Dinner", "Snack", "Supper"]
@@ -19,7 +20,8 @@ class NewMealViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var typePicker: UIPickerView!
     
     var actualMenu: Menu = Menu(year: 0, month: 0, day: 0, calories: 0, id: "")
-        
+    var actualMeal: Meal = Meal(hour: 0, minute: 0, id: "")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         timePicker.datePickerMode = UIDatePickerMode.time
@@ -66,16 +68,50 @@ class NewMealViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         hour = calendar.component(.hour, from: date)
         minutes = calendar.component(.minute, from: date)
     }
-//    @IBAction func nextButton(_ sender: Any) {
-//        actualMenu = Menu(year: self.year, month: self.month, day: self.day)
-//        self.performSegue(withIdentifier: "toWeight", sender: sender)
-//    }
-//    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let destination = segue.destination as? WeightViewController{
-//            destination.actualMeasure = self.actualMeasure
-//        }
-//    }
+    //    @IBAction func nextButton(_ sender: Any) {
+    //        actualMenu = Menu(year: self.year, month: self.month, day: self.day)
+    //        self.performSegue(withIdentifier: "toWeight", sender: sender)
+    //    }
+    
+    
+    //goToItens
+    @IBAction func nextButton(_ sender: Any) {
+        let tempID = actualMenu.id + "/" + String(self.hour) + String(self.minutes) + self.type
+        actualMeal = Meal(hour: self.hour, minute: self.minutes,id: tempID)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let new_Measure = NSEntityDescription.insertNewObject(forEntityName: "Meals", into: context)
+        
+        new_Measure.setValue("rafael", forKey: "user")
+        new_Measure.setValue(self.hour, forKey: "hour")
+        new_Measure.setValue(self.minutes, forKey: "minute")
+        new_Measure.setValue(self.type, forKey: "type")
+        new_Measure.setValue(self.actualMeal.id, forKey: "id")
+        
+        do{
+            try context.save()
+            print("The user is saved")
+            
+        }
+        catch{
+            //error
+        }
+        
+        self.performSegue(withIdentifier: "goToItens", sender: sender)
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? MealItensTableViewController{
+            destination.actualMeal = self.actualMeal
+            destination.newItem = true
+            destination.actualMenu = self.actualMenu
+        }
+    }
     
     
     /*
@@ -87,5 +123,5 @@ class NewMealViewController: UIViewController, UIPickerViewDataSource, UIPickerV
      // Pass the selected object to the new view controller.
      }
      */
-
+    
 }
