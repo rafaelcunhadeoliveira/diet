@@ -17,6 +17,7 @@
 		531D8E521E76C7C100D5BD8A /* WeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531D8E511E76C7C100D5BD8A /* WeightViewController.swift */; };
 		531D8E541E76D58500D5BD8A /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531D8E531E76D58500D5BD8A /* Menu.swift */; };
 		531D8E561E76D5AB00D5BD8A /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531D8E551E76D5AB00D5BD8A /* Meal.swift */; };
+		531D8E581E7F270100D5BD8A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531D8E571E7F270100D5BD8A /* HomeViewController.swift */; };
 		532918841E71B38A00499B62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532918831E71B38A00499B62 /* AppDelegate.swift */; };
 		532918891E71B38A00499B62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 532918871E71B38A00499B62 /* Main.storyboard */; };
 		5329188C1E71B38A00499B62 /* MyDiet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5329188A1E71B38A00499B62 /* MyDiet.xcdatamodeld */; };
@@ -66,6 +67,7 @@
 		531D8E511E76C7C100D5BD8A /* WeightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightViewController.swift; sourceTree = "<group>"; };
 		531D8E531E76D58500D5BD8A /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		531D8E551E76D5AB00D5BD8A /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		531D8E571E7F270100D5BD8A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		532918801E71B38A00499B62 /* MyDiet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDiet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		532918831E71B38A00499B62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		532918881E71B38A00499B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				5329188F1E71B38A00499B62 /* LaunchScreen.storyboard */,
 				532918921E71B38A00499B62 /* Info.plist */,
 				5329188A1E71B38A00499B62 /* MyDiet.xcdatamodeld */,
+				531D8E571E7F270100D5BD8A /* HomeViewController.swift */,
 			);
 			path = MyDiet;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				531D8E581E7F270100D5BD8A /* HomeViewController.swift in Sources */,
 				9E9F262F1E7974A400D83B61 /* MealItensTableViewCell.swift in Sources */,
 				532918B81E71B4F300499B62 /* NewMeasureViewController.swift in Sources */,
 				531D8E421E73108500D5BD8A /* HipsViewController.swift in Sources */,

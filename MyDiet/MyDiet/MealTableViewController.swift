@@ -86,6 +86,7 @@ class MealTableViewController: UITableViewController {
     
     func Done(){
         performSegue(withIdentifier: "backToMenus", sender: self)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,6 +95,7 @@ class MealTableViewController: UITableViewController {
         }
         if let destination = segue.destination as? MenuTableViewController{
             destination.actualMenu = self.actualMenu
+            destination.isNew = true
         }
         if let destination = segue.destination as? MealItensTableViewController{
             destination.actualMeal = self.actualMeal

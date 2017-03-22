@@ -30,6 +30,9 @@ class MenuTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        if(isNew){
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(MealItensTableViewController.Done))
+        }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(MenuTableViewController.insert))
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -87,6 +90,10 @@ class MenuTableViewController: UITableViewController {
     func insert(){
         self.isNew = true
         performSegue(withIdentifier: "newMenu", sender: self)
+    }
+    
+    func Done(){
+        performSegue(withIdentifier: "backHome", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -151,6 +158,8 @@ class MenuTableViewController: UITableViewController {
         {
             let moc = getContext()
             var count = 0
+            var mealcount = 0
+            var itencount = 0
             do{
                 
                 let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Menus")
@@ -163,6 +172,30 @@ class MenuTableViewController: UITableViewController {
                             moc.delete(result)
                         }
                         count += 1
+                    }
+                }
+                let mealsrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Meals")
+                mealsrequest.returnsObjectsAsFaults = false
+                
+                let mealsresults = try moc.fetch(mealsrequest)
+                if mealsresults.count > 0{
+                    for result in mealsresults as! [NSManagedObject]{
+                        if(mealcount == indexPath.row){
+                            moc.delete(result)
+                        }
+                        mealcount += 1
+                    }
+                }
+                let itensrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Itens")
+                itensrequest.returnsObjectsAsFaults = false
+                
+                let itensresults = try moc.fetch(itensrequest)
+                if itensresults.count > 0{
+                    for result in itensresults as! [NSManagedObject]{
+                        if(itencount == indexPath.row){
+                            moc.delete(result)
+                        }
+                        itencount += 1
                     }
                 }
             }
